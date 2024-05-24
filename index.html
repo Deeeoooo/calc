@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>공학용 계산기</title>
+    <style>
+        /* 스타일 */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .calculator {
+            background-color: #f3f3f3;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 400px;
+        }
+
+        .display {
+            background-color: #fff;
+            color: #000;
+            padding: 10px;
+            text-align: right;
+            font-size: 24px;
+            height: 70px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        button {
+            padding: 20px;
+            font-size: 18px;
+            background-color: #e0e0e0;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #d3d3d3;
+        }
+
+        button.operator {
+            background-color: #ff9800;
+            color: #fff;
+        }
+
+        button.operator:hover {
+            background-color: #f57c00;
+        }
+
+        button.clear {
+            background-color: #f44336;
+            color: #fff;
+        }
+
+        button.clear:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+
+<div class="calculator">
+    <div class="display" id="display">0</div>
+    <div class="buttons">
+        <button onclick="appendToDisplay('7')">7</button>
+        <button onclick="appendToDisplay('8')">8</button>
+        <button onclick="appendToDisplay('9')">9</button>
+        <button class="operator" onclick="appendToDisplay('+')">+</button>
+        <button onclick="appendToDisplay('4')">4</button>
+        <button onclick="appendToDisplay('5')">5</button>
+        <button onclick="appendToDisplay('6')">6</button>
+        <button class="operator" onclick="appendToDisplay('-')">-</button>
+        <button onclick="appendToDisplay('1')">1</button>
+        <button onclick="appendToDisplay('2')">2</button>
+        <button onclick="appendToDisplay('3')">3</button>
+        <button class="operator" onclick="appendToDisplay('*')">*</button>
+        <button onclick="appendToDisplay('0')">0</button>
+        <button onclick="appendToDisplay('.')">.</button>
+        <button class="operator" onclick="calculate()">=</button>
+        <button class="operator clear" onclick="clearDisplay()">C</button>
+        <button class="operator" onclick="appendToDisplay('/')">/</button>
+    </div>
+</div>
+
+<script>
+    function appendToDisplay(value) {
+        var display = document.getElementById('display');
+        if (display.innerText === '0' && value !== '.') {
+            display.innerText = value;
+        } else {
+            display.innerText += value;
+        }
+    }
+
+    function calculate() {
+        var display = document.getElementById('display');
+        var result = eval(display.innerText);
+        display.innerText = result;
+    }
+
+    function clearDisplay() {
+        var display = document.getElementById('display');
+        display.innerText = '0';
+    }
+</script>
+
+</body>
+</html>
